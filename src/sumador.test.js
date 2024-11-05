@@ -1,7 +1,13 @@
-import sumar from "./sumador.js";
+const add = require('./funciones') ;
 
-describe("Sumar", () => {
-  it("deberia sumar dos numeros", () => {
-    expect(sumar(3, 2)).toEqual(5);
+describe('add function', () => {
+  test('should return 0 for an empty string', () => {
+    expect(add('')).toBe(0);
   });
+
+  test('should return one number if the input is one',()=>{
+  expect(add('1')).toBe(1);
+  });
+
+
 });
