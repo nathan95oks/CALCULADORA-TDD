@@ -1,6 +1,5 @@
 describe('Calculadora de cadenas', () => { 
     beforeEach(() => {
-
         cy.visit('http://localhost:1234/index.html');
     });
 
@@ -24,8 +23,9 @@ describe('Calculadora de cadenas', () => {
 
     it('deberia retornar 7 para la cadena de 1-2,4', () => {
         cy.window().then((win) => {
-        expect((win).add('1-2,4')).to.equal(7);
+            expect(win.add('1-2,4')).to.equal(7);
         });
     });
-    
+
+
 });

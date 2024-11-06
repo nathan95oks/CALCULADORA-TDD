@@ -1,17 +1,14 @@
 const add = (numbers) => {
     if (numbers === '') return 0;
-    const numsArray = numbers.split(/,|-/).map(num => parseInt(num.trim(), 10));
+
+    let numsArray = numbers.split(/,|-/).map(num => parseInt(num.trim(), 10));
+
+    numsArray = numsArray.filter(num => num >= 0 && num < 1000);
+
     return numsArray.reduce((acc, curr) => acc + curr, 0);
 };
 
 const calcularCadena = (cadena) => {
-    if (cadena.startsWith('//')) {
-        const [delimiterPart, numbersPart] = cadena.split('\n');
-        const delimiter = delimiterPart.replace('//[', '').replace(']', '');
-
-        return add(numbersPart.split(new RegExp(`[${delimiter},-]`)).join(','));
-    }
-
     return add(cadena);
 };
 
@@ -21,4 +18,5 @@ if (typeof module !== 'undefined' && module.exports) {
 
 if (typeof window !== 'undefined') {
     window.add = add;
+    window.calcularCadena = calcularCadena;
 }
