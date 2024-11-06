@@ -1,11 +1,23 @@
 const add = (numbers) => {
     if (numbers === '') return 0;
-    return parseInt(numbers);
+    const numsArray = numbers.split(/,|-/).map(num => parseInt(num.trim(), 10));
+    return numsArray.reduce((acc, curr) => acc + curr, 0);
 };
 
-// Asigna `add` al objeto global `window` si está definido
+const calcularCadena = (cadena) => {
+    if (cadena.startsWith('//')) {
+        const [delimiterPart, numbersPart] = cadena.split('\n');
+        const delimiter = delimiterPart.replace('//[', '').replace(']', '');
+        return add(numbersPart.split(delimiter).join(','));
+    }
+
+    return add(cadena);
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { add, calcularCadena };
+}
+
 if (typeof window !== 'undefined') {
     window.add = add;
 }
-
-console.log('Funciones.js cargado'); // Para verificar que se cargó correctamente
