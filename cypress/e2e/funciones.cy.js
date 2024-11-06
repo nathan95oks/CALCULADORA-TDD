@@ -21,4 +21,11 @@ describe('Calculadora de cadenas', () => {
             expect(win.add('1,2')).to.equal(3);
         });
     });
+
+    it('deberia retornar 7 para la cadena de 1-2,4', () => {
+        cy.window().then((win) => {
+        expect((win).add('1-2,4')).to.equal(7);
+        });
+    });
+    
 });

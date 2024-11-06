@@ -8,7 +8,8 @@ const calcularCadena = (cadena) => {
     if (cadena.startsWith('//')) {
         const [delimiterPart, numbersPart] = cadena.split('\n');
         const delimiter = delimiterPart.replace('//[', '').replace(']', '');
-        return add(numbersPart.split(delimiter).join(','));
+
+        return add(numbersPart.split(new RegExp(`[${delimiter},-]`)).join(','));
     }
 
     return add(cadena);
